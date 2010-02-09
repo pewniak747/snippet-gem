@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 require 'date'
 require 'rubygems'
 require 'git'

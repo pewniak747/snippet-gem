@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 require 'post'
 require 'optparse'
 
@@ -46,20 +48,3 @@ class Snippet
 	end
 
 end
-
-options = Snippet.parse(ARGV)
-if !options[:working_dir]
-		options[:working_dir] = '/home/pewniak747/Projekty/pewniak747.github.com/'
-end
-if !options[:posts_dir]
-		options[:posts_dir] = 'snippets/_posts/'
-end
-if !options[:language]
-	options[:language] = 'shell'
-end
-
-p options
-
-post = Post.new(options)
-puts post.working_dir
-post.send
