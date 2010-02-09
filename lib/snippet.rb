@@ -18,8 +18,16 @@ class Snippet
 				options[:language] = lang
 			end
 			
-			opts.on("-c", "--code [code]", "Provide code for snippet") do |code|
+			opts.on("-c", "--code [CODE]", "Provide code for snippet") do |code|
 				options[:code] = code
+			end
+			
+			opts.on("-w", "--working-directory [DIR]", "Provide blog's directory") do |dir|
+				options[:working_directory] = dir
+			end
+		
+			opts.on("-p", "--posts-directory [DIR]", "Provide post's subdirectory") do |dir|
+				options[:posts_dir] = dir
 			end
 		
 			opts.on_tail("-h", "--help", "Show this message") do
