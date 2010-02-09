@@ -1,8 +1,6 @@
 require 'post'
 require 'optparse'
 
-#VERSION = '0.0'
-
 class Snippet
 	attr_accessor :defaults
 	
@@ -30,14 +28,12 @@ class Snippet
 			end
 			
 			opts.on_tail("-v", "--version", "Show script version") do
-				#puts VERSION
+				puts "0.0"
 				exit
 			end
     
 		end
 		opts.parse!(args)
-		#p options
-		#p args
 		return options
 	end
 

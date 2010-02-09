@@ -70,17 +70,27 @@ private
 
 		def validate
 			@errors.clear
-			if !@title
+			if !@title || @title.empty?
 				@errors << 'Title cannot be empty'
 			end
-			if !@code 
+			if !@code || @code.empty?
 				@errors << 'Snippet must contain code'
 			end
-			if !@working_dir
+			if !@working_dir || @working_dir.empty?
 				@errors << 'You must specify working directory'
 			end
-			if !@posts_dir
+			if !@posts_dir || @posts_dir.empty?
 				@errors << 'You must specify posts directory'
+			end
+			if @working_dir 
+				if !File.directory?(@working_dir)
+					@errors << "Working directory not valid"
+				end
+			end
+			if @posts_dir
+				if !File.directory?(@working_dir+@posts_dir)
+					@errors << 'Posts directory not valid'
+				end
 			end
 		end
 		
