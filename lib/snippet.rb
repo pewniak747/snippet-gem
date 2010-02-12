@@ -4,8 +4,6 @@ require 'post'
 require 'optparse'
 
 class Snippet
-	attr_accessor :defaults
-	
 
 	def self.parse(args)
 		options = {}

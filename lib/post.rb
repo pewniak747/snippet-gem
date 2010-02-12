@@ -20,6 +20,11 @@ class Post
 			@date = Date.today
 			@code = options[:code]
 			@errors = []
+			return if !valid?
+			if !@code
+				puts 'Insert some code. Type END to continue.'
+				@code = get_code
+			end
 		end
 		
 		def send
@@ -39,6 +44,8 @@ class Post
 		
 		end
 		
+private
+		
 		def write_content
 			if valid? == false
 				return nil
@@ -54,7 +61,7 @@ title: #{@title}
 {% endhighlight %}
 ]
 		end
-		
+	
 		def valid?
 			validate
 			@errors.empty?
@@ -67,17 +74,15 @@ title: #{@title}
 			
 			return "#{@working_dir}#{@posts_dir}#{@date.year}-#{date.month}-#{date.day}-#{@title.sub(' ', '-')}.textile"
 		end
-		
-private
 
 		def validate
 			@errors.clear
 			if !@title || @title.empty?
 				@errors << 'Title cannot be empty'
 			end
-			if !@code || @code.empty?
-				@errors << 'Snippet must contain code'
-			end
+			#if !@code || @code.empty?
+			#	@errors << 'Snippet must contain code'
+			#end
 			if !@working_dir || @working_dir.empty?
 				@errors << 'You must specify working directory'
 			end
@@ -94,6 +99,12 @@ private
 					@errors << 'Posts directory not valid'
 				end
 			end
+		end
+		
+		def get_code
+			$/ = "END"
+			new_code = STDIN.gets.sub(/\nEND$/, '')
+			#puts new_code
 		end
 		
 end
